@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles.css">
+  </head>  
+  <body>
+    <%- include('header') %>
+    <h2>Post Your Message</h2>
+    <form class="message-form" method="POST" action="/new">
+      <label for="user">Name:</label>
+      <input type="text" name="user" id="user">
+      <label for="message">Message:</label>
+      <textarea name="message" id="message"></textarea>
+      <button class="post-message-btn" type="submit">Post</button>
+    </form>
+  </body>
+</html>
