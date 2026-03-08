@@ -30,7 +30,7 @@ indexRouter.post("/new", (req, res) => {
 });
 indexRouter.get("/:messageID", (req, res) => {
     const id = Number(req.params.messageID);
-    const message = messages.find(m => m.id === id); // Find the matching message
+    const message = messages.find(m => m.id === id);
 
     if (message) {
         res.render('messageDetails', { message, links });
