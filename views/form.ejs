@@ -14,9 +14,9 @@
     <% } %>
     <form class="message-form" method="POST" action="/new">
       <label for="username">Name:</label>
-      <input type="text" name="username" id="username" value="<%= locals.previousInput ? previousInput.name : '' %>">
+      <input type="text" name="username" id="username" value="<%= locals.previousInput ? previousInput.username : '' %>">
       <label for="text">Message:</label>
-      <textarea name="text" id="text"><%= locals.previousInput ? previousInput.message : '' %></textarea>
+      <textarea name="text" id="text"><%= locals.previousInput ? previousInput.text : '' %></textarea>
       <button class="post-message-btn" type="submit">Post</button>
     </form>
   </body>
