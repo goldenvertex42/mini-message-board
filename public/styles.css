@@ -36,84 +36,88 @@ h1, h2, h3, h4, h5, h6 {
 /* RESET END */
 
 ul {
-    list-style-type: none;
-    padding: 1rem;
+  list-style-type: none;
+  padding: 1rem;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 textarea, input, label {
-    font-family: inherit;
-    font-size: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-nav ul {
-    display: flex;
-    gap: 1rem;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
 }
 
 .main-nav li a {
-    display: block;
-    padding: 0.5rem 1rem;
-    background-color: #555;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+  display: block;
+  padding: 0.5rem 1rem;
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 }
 
 .message-box {
-    border: black solid 1px;
-    border-radius: 8px;
-    padding: 0.5rem;
-    position: relative;
-    max-width: 30rem;
+  border: black solid 1px;
+  border-radius: 8px;
+  padding: 0.5rem;
+  position: relative;
+  max-width: 30rem;
 }
 
 .message-content {
-    max-width: 20rem;
+  max-width: 20rem;
 }
 
 .details-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .message-date {
-    display: flex;
-    justify-content: flex-end;
-    font-size: smaller;
+  display: flex;
+  justify-content: flex-end;
+  font-size: smaller;
 }
 
 form {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    max-width: fit-content;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  max-width: fit-content;
 }
 
 label {
-    grid-column: 1;
-    text-align: right;
-    padding-right: 1rem;
-    align-self: center;
+  grid-column: 1;
+  text-align: right;
+  padding-right: 1rem;
+  align-self: center;
 }
 
 input, textarea {
-    grid-column: 2;
+  grid-column: 2;
 }
 
 .post-user-btn {
-    align-self: start;
+  align-self: start;
+}
+
+.errors {
+  color: red;
 }

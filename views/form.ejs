@@ -5,11 +5,18 @@
   <body>
     <%- include('header') %>
     <h2>Post Your Message</h2>
+    <% if (locals.errors) { %>
+      <ul class="errors">
+        <% errors.forEach(function(error) { %>
+          <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+    <% } %>
     <form class="message-form" method="POST" action="/new">
       <label for="username">Name:</label>
-      <input type="text" name="username" id="username">
+      <input type="text" name="username" id="username" value="<%= locals.previousInput ? previousInput.name : '' %>">
       <label for="text">Message:</label>
-      <textarea name="text" id="text"></textarea>
+      <textarea name="text" id="text"><%= locals.previousInput ? previousInput.message : '' %></textarea>
       <button class="post-message-btn" type="submit">Post</button>
     </form>
   </body>

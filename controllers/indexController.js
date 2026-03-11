@@ -23,7 +23,7 @@ const links = [
 
 async function displayMessages(req, res) {
     const messages = await db.getAllMessages();
-    res.render("index", { title: "Mini Messageboard", messages, links });
+    res.render("index", { messages, links });
 }
 
 async function createMessageGet(req, res) {
@@ -37,7 +37,11 @@ const createMessagePost = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       // If there are validation errors, return a 400 Bad Request response with the errors
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).render("form", { 
+        links,
+        errors: errors.array(),
+        previousInput: req.body
+      });
     }
     const { text, username } = req.body;
     await db.insertMessage(text, username);
