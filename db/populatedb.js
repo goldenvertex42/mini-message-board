@@ -1,5 +1,16 @@
 #! /usr/bin/env node
 
+// At the top of populatedb.js
+const userArgs = process.argv.slice(2);
+
+// Check if a URL was provided as an argument, otherwise look for an environment variable
+const connectionString = userArgs[0] || process.env.DATABASE_URL;
+
+if (!connectionString) {
+  console.error("Error: Please provide a database connection string as an argument or set DATABASE_URL.");
+  process.exit(1);
+}
+
 const { Client } = require("pg");
 
 const SQL = `
@@ -22,7 +33,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: connectionString,
   });
   await client.connect();
   await client.query(SQL);
