@@ -1,4 +1,20 @@
 const db = require("../db/queries");
+const { body, validationResult } = require('express-validator');
+
+const validateMessageBoardPost = [
+  // Validation for the 'name' field
+  body('name', 'Name cannot be empty')
+    .trim() // Removes leading/trailing whitespace
+    .notEmpty() // Ensures the field is not empty after trimming
+    .isLength({ min: 2, max: 50 }).withMessage('Name must be between 2 and 50 characters') // Enforces a length constraint
+    .matches(/^[a-zA-Z\s\-']+$/).withMessage('Name must contain only letters, spaces, hyphens, or apostrophes'), // Allows common name characters
+
+  // Validation for the 'message' field
+  body('message', 'Message cannot be empty')
+    .trim() // Removes leading/trailing whitespace
+    .notEmpty() // Ensures the field is not empty after trimming
+    .isLength({ min: 1, max: 500 }).withMessage('Message must be between 1 and 500 characters'), // Enforces a length constraint
+];
 
 const links = [
   { href: "/", text: "Home" },
@@ -14,11 +30,19 @@ async function createMessageGet(req, res) {
   res.render("form", { links });
 }
 
-async function createMessagePost(req, res) {
-  const { text, username } = req.body;
-  await db.insertMessage(text, username);
-  res.redirect("/");
-}
+const createMessagePost = [
+  validateMessageBoardPost,
+  // Middleware to handle validation results
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // If there are validation errors, return a 400 Bad Request response with the errors
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { text, username } = req.body;
+    await db.insertMessage(text, username);
+    res.redirect("/");
+}]
 
 async function displayMessageDetails(req, res) {
     const messages = await db.getAllMessages();
