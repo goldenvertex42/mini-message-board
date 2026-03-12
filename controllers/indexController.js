@@ -3,14 +3,14 @@ const { body, validationResult } = require('express-validator');
 
 const validateMessageBoardPost = [
   // Validation for the 'name' field
-  body('name', 'Name cannot be empty')
+  body('name')
     .trim() // Removes leading/trailing whitespace
     .notEmpty() // Ensures the field is not empty after trimming
     .isLength({ min: 2, max: 50 }).withMessage('Name must be between 2 and 50 characters') // Enforces a length constraint
     .matches(/^[a-zA-Z\s\-']+$/).withMessage('Name must contain only letters, spaces, hyphens, or apostrophes'), // Allows common name characters
 
   // Validation for the 'message' field
-  body('message', 'Message cannot be empty')
+  body('message')
     .trim() // Removes leading/trailing whitespace
     .notEmpty() // Ensures the field is not empty after trimming
     .isLength({ min: 1, max: 500 }).withMessage('Message must be between 1 and 500 characters'), // Enforces a length constraint
